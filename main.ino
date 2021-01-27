@@ -93,7 +93,7 @@ void loop() {
   }
 
   if (!mqtt.connected()) {
-    if (mqtt.connect(mqtt_id)) {
+    if (mqtt.connect(mqtt_id, mqtt_user, mqtt_pass)) {
       printer.println(F("MQTT connected"));
       printer.feed(1);
       mqtt.subscribe(mqtt_listen_topic);
