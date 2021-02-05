@@ -41,17 +41,17 @@ Library contains option to check status of the paper - printer.has_paper should 
 
 # Configuration
 In order to compile this project, you need to rename example-config.h to config.h and edit values there:
-*ssid* - change to matche your WiFi SSD
-*password* - needs to match your WiFi password
-*mqtt_server* - IP address of your MQTT server
-*mqtt_user* - if you need user credential to access MQTT, input here username, if not leave empty
-*mqtt_pass* - password to access MQTT server, if needed
-*my_id* - name of the printer (will be visible in MQTT log)
-*mqtt_port* - MQTT server port, default is 1883
-*baud* - baud rate for communication, leave at 9600
-*mqtt_listen_topic* - MQTT topic that we will be using ot listen for text to print
-*mqtt_text_size* - size of the text we will print, S for Small, M for Medium, L for Large*
-*mqtt_row_spacing* - row spacing with default being 32, minimum 24 and maximum 64
+- *ssid* - change to matche your WiFi SSD
+- *password* - needs to match your WiFi password
+- *mqtt_server* - IP address of your MQTT server
+- *mqtt_user* - if you need user credential to access MQTT, input here username, if not leave empty
+- *mqtt_pass* - password to access MQTT server, if needed
+- *my_id* - name of the printer (will be visible in MQTT log)
+- *mqtt_port* - MQTT server port, default is 1883
+- *baud* - baud rate for communication, leave at 9600
+- *mqtt_listen_topic* - MQTT topic that we will be using ot listen for text to print
+- *mqtt_text_size* - size of the text we will print, S for Small, M for Medium, L for Large*
+- *mqtt_row_spacing* - row spacing with default being 32, minimum 24 and maximum 64
 
 # Credits
 - [HutchieV](https://github.com/HutchieV) for [ESP8266 MQTT Thermal Printer](https://github.com/HutchieV/ESP8266-MQTT-Thermal-Printer)
