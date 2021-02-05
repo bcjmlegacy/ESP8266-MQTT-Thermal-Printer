@@ -7,5 +7,5 @@ const char* my_id                   = "thermal_printer";
 const unsigned int mqtt_port        = 1883;
 const unsigned int baud             = 9600;
 const char* mqtt_listen_topic       = "/printer/thermal";
-const char* mqtt_text_size          = "S"; // Letter size - default is, other options are S for Small, M for Medium, L for Large
-const char* mqtt_row_spacing        = "24"; // Spacing between rows - default is 32, other values are minimum is 24, 32 and maximum of 64 
+char mqtt_text_size                  = 'S'; // Letter size - default is, other options are S for Small, M for Medium, L for Large
+const unsigned int mqtt_row_spacing  = 24; // Spacing between rows - default is 32, other values are minimum is 24, 32 and maximum of 64 
