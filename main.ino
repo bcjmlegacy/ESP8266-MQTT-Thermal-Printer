@@ -45,7 +45,8 @@ void hexlify(uint8_t bytes[], uint8_t len, char *buffer)
 
 void callback(char* topic, byte* payload, unsigned int length) {
   printer.setDefault();
-  printer.setSize('S');
+  printer.setSize(mqtt_text_size);
+  printer.setLineHeight(mqtt_row_spacing);
   printer.feed(1);
   printer.print(F("Message arrived:\n"));
   for (int i=0;i<length;i++) {
@@ -62,7 +63,8 @@ void setup() {
   printer.begin();
   printer.setDefault();
   
-  printer.setSize('S');
+  printer.setSize(mqtt_text_size);
+  printer.setLineHeight(mqtt_row_spacing);
   printer.feed(1);
   printer.println(F("Printer starting"));
   
