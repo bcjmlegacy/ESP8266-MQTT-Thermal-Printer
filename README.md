@@ -6,7 +6,6 @@ Here I'll try to improve it to the best of my abilities for specific use - addin
 Although COMPLETELY unnecessary, this printer is really fun addtion to it allowing you to expand your system output options and it would be great to have it in future as part of the notification platform. BUT that is out of my (I'l just a sales guy tinkering) programming capabilities.
 
 # About printer
-
 This [58mm Thermal Printer](https://s.click.aliexpress.com/e/_AZ8OYO) can print by using USB/TTL connection.
 In the package you will receive power cable and data cable.
 It has preloaded firmware with Latin alphabet (ASCII) but also has capability to print Bar Code (something I still havent test) and 2D Bar code.
@@ -50,7 +49,7 @@ In order to compile this project, you need to rename example-config.h to config.
 - *mqtt_port* - MQTT server port, default is 1883
 - *baud* - baud rate for communication, leave at 9600
 - *mqtt_listen_topic* - MQTT topic that we will be using ot listen for text to print
-- *mqtt_text_size* - size of the text we will print, S for Small, M for Medium, L for Large*
+- *mqtt_text_size* - size of the text we will print, S for Small, M for Medium, L for Large
 - *mqtt_row_spacing* - row spacing with default being 32, minimum 24 and maximum 64
 
 # Credits
