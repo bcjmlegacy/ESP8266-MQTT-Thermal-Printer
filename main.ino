@@ -1,13 +1,12 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#include <DallasTemperature.h>
 
 #include "config.h"
 #include "Adafruit_Thermal.h"
 #include "SoftwareSerial.h"
 
-#define TX_PIN 5 // RX
-#define RX_PIN 4 // TX
+#define RX_PIN 5 // RX GPIO-Pin of your Microcontroller
+#define TX_PIN 4 // TX GPIO-Pin of your Microcontroller 
 
 #define MAX_TOPIC_LENGTH 50
 #define MAX_PAYLOAD_LENGTH 10
@@ -19,29 +18,8 @@ DeviceAddress device_address;
 WiFiClient client;
 PubSubClient mqtt(client);
 
-SoftwareSerial mySerial(TX_PIN, RX_PIN);
+SoftwareSerial mySerial(RX_PIN, TX_PIN); 
 Adafruit_Thermal printer(&mySerial);
-
-void hexlify(uint8_t bytes[], uint8_t len, char *buffer)
-{
-  for (int i=0; i<len; i++) {
-    int ms = bytes[i] >> 4;
-    int ls = bytes[i] & 0x0f;
-    char a, b;
-    if (ms < 10)
-      a = '0' + ms;
-    else
-      a = 'a' + ms - 10;
-    if (ls < 10)
-      b = '0' + ls;
-    else
-      b = 'a' + ls - 10;
-    //printf("byte %d is %02x (%x %x %c%c)\n", i, bytes[i], ms, ls, a, b);
-    buffer[i*2] = a;
-    buffer[(i*2)+1] = b;
-  }
-  buffer[(len*2)] = 0;
-}
 
 void callback(char* topic, byte* payload, unsigned int length) {
   printer.setDefault();
@@ -56,8 +34,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 void setup() {
-
-  char device_address_string[17];
 
   mySerial.begin(baud);
   printer.begin();
@@ -110,3 +86,4 @@ void loop() {
   mqtt.loop();
   
 }
+
