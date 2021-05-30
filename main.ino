@@ -14,7 +14,8 @@
 char mqtt_id[24];
 char mqtt_topic[50];
 
-DeviceAddress device_address;
+uint32_t lastTimeItHappened = millis() + papercheck_milliseconds; 
+
 WiFiClient client;
 PubSubClient mqtt(client);
 
@@ -86,6 +87,33 @@ if (strcmp(topic,mqtt_listen_topic_textlineheight)==0){
         printer.underlineOff();
       } 
   } 
+  
+ // topic to print barcode 
+ if (strcmp(topic,mqtt_listen_topic_barcode)==0){
+      uint8_t barcode_type = 0;  
+      char barcode_value[255] = ""; // some borcodes allows only 255 digits(!) but not for our 58mm printer ;)
+      int y = 0;
+      bool barcodeseperatorfound = false; 
+      for (int i=0;i<length;i++) {
+        if (!barcodeseperatorfound){
+           if (payload[i] == '|'){
+              barcodeseperatorfound = true;
+              continue;
+           }
+          char c = payload[i];
+          if (c >= '0' && c <= '9') {
+            barcode_type = barcode_type*10 + c - '0';//encode to interger
+          }
+        } else {
+          barcode_value[y++] = (char)payload[i];
+        }     
+      }
+
+      printer.printBarcode(barcode_value, (uint8_t) barcode_type);
+  } 
+
+
+
 
 // topic to print text
  if (strcmp(topic,mqtt_listen_topic_textsize)==0){
@@ -146,6 +174,7 @@ void loop() {
       mqtt.subscribe(mqtt_listen_topic_textjustify);
       mqtt.subscribe(mqtt_listen_topic_textbold);
       mqtt.subscribe(mqtt_listen_topic_textunderline);
+      mqtt.subscribe(mqtt_listen_topic_barcode);
     } else {
       printer.println(F("MQTT connection failed"));
       printer.feed(1);
@@ -154,7 +183,18 @@ void loop() {
     }
   }
 
+  //check the paperload
+  if ((millis() - lastTimeItHappened >= papercheck_milliseconds)){
+    bool bPaperCheck = printer.hasPaper();
+    delay(100);
+    if (bPaperCheck) {
+      mqtt.publish(mqtt_listen_topic_papercheck, "yes");
+    } else {
+      mqtt.publish(mqtt_listen_topic_papercheck, "no");
+    } 
+    lastTimeItHappened = millis();
+  }
+
   mqtt.loop();
   
 }
-
