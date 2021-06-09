@@ -58,7 +58,7 @@ Important: your thermal printer has only 58mm to print the barcode in the exampl
 *7* = CODE93,  < CODE93 barcode system. 1<=num<=255    
 *8* = CODE128, < CODE128 barcode system. 2<=num<=255    
   payload for the barcode_ topic (configed below) is    
-  <barcodetype>|<barcode_value>   
+  **`<barcodetype>|<barcode_value>`**
   e.g. *7|Hello!!*   
 
 
@@ -83,9 +83,23 @@ In order to compile this project, you need to rename example-config.h to config.
 - *mqtt_listen_topic_textunderline* - MQTT topic for inverse the text: *1* = underline, *0* = not underline
 - *mqtt_text_size* - MQTT topic for initial size of the text we will print, S for Small, M for Medium, L for Large
 - *mqtt_row_spacing* - MQTT topic of initial row spacing with default being 32, minimum 24 and maximum 64
-- *mqtt_listen_topic_barcode* - MQTT topic to print barcode in payload should be: <barcodetype>|<barcode_value> e.g. 7|HelloMaster here 4 is barcodetype CODE93
+- *mqtt_listen_topic_barcode* - MQTT topic to print barcode in payload should be: `<barcodetype>|<barcode_value>` e.g. `7|HelloMaster` here 4 is barcodetype CODE93
 - *mqtt_listen_topic_papercheck* - MQTT topic (readonly!) sends every defined milliseconds *papercheck_milliseconds* the status of the paperload *yes* | *no* 
 
+## MQTT Topics
+| mqtt topic\* | payload |
+|-|:-|
+|*mqtt_listen_topic_text2print*| e.g. "Hello world!" |
+|*mqtt_listen_topic_textsize*| *S* = small,<br> *M* = medium,<br> *L* = large |
+|*mqtt_listen_topic_textlineheight*| minimum *24* and maximum *64* e.g. 24|
+|*mqtt_listen_topic_textinverse*|*1* = inverse,<br> *0* = not inverse|
+|*mqtt_listen_topic_textjustify*|left = *L*,<br> center = *C*,<br> right = *R*|
+|*mqtt_listen_topic_textbold*|*1* = bold,<br> *0* = not bold|
+|*mqtt_listen_topic_textunderline*|*1* = underline,<br> *0* = not underline|
+|*mqtt_listen_topic_barcode*| \<barcodetype\>\|\<barcode_value\><br> e.g. 7\|HelloMaster|
+|*mqtt_listen_topic_papercheck*| **readonly!**<br> - yes<br>- no |
+
+\*defined in config-file above
 
 # Credits
 - [HutchieV](https://github.com/HutchieV) for [ESP8266 MQTT Thermal Printer](https://github.com/HutchieV/ESP8266-MQTT-Thermal-Printer)
