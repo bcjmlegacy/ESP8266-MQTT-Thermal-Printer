@@ -1,27 +1,23 @@
 # ESP8266 MQTT Thermal Printer for HA (V2.1)
-This project is fork from [ESP8266 MQTT Thermal Printer](https://github.com/HutchieV/ESP8266-MQTT-Thermal-Printer) and a I really would like to thatnk original author for it.
+Many thanks to [BeardedTinker](https://github.com/BeardedTinker) and [lebherz](https://github.com/lebherz) for contributing to this project. BeardedTinker wrote most of this README.
 
-Here I'll try to improve it to the best of my abilities for specific use - adding it to [Home Assistant] as printer for anything that wou want to print from it.
+This version supports, since v2:
+- Changing the textsize
+- Changing the textlineheight
+- Toggling inverse text
+- Toggling bold text
+- Toggling text underline
+- Setting text justification
 
-in Version 2 we can:
-- change the textsize via mqtt
-- change the textlineheight via mqtt
-- can change to inverse font via mqtt
-- can justify the text via mqtt
-- can change to print bold via mqtt
-- change to underline the text via mqtt
-in Version 2.1 we can: 
-- print barcodes via mqtt
-- receive the paperload status via mqtt
-
-
-Although COMPLETELY unnecessary, this printer is really fun addtion to it allowing you to expand your system output options and it would be great to have it in future as part of the notification platform. BUT that is out of my (I'l just a sales guy tinkering) programming capabilities.
+Since v2.1
+- print barcodes
+- receive the paperload status
 
 # About printer
 This [58mm Thermal Printer](https://s.click.aliexpress.com/e/_AZ8OYO) can print by using USB/TTL connection.
 In the package you will receive power cable and data cable.
-It has preloaded firmware with Latin alphabet (ASCII) but also has capability to print Bar Code (something I still havent test) and 2D Bar code.
-Yes, if you know how to convert, pritner can also print very simple images.
+It has preloaded firmware with Latin alphabet (ASCII) but also has capability to print 2D barcode.
+Yes, if you know how to convert, printer can also print very simple images.
 
 Paper needs to be 57.5mm (58 is ok) and there are even [sticker version](https://www.aliexpress.com/item/1005001877510938.html), which opens up some more capabilites.
 
@@ -35,7 +31,7 @@ Paper needs to be 57.5mm (58 is ok) and there are even [sticker version](https:/
 For printing, we are using Adafruit Thermal Library. At this point, I tried to improve on original code, by adding 2 options in static configuration file. 
 - Text size (options are S, M and L with S being default) 
 - Line spacing (minimum value is 24, default 32 and maximum 64)
-Values can be changed via topics configured in the config.h
+Values can be changed via topics configured in `config.h`
 
 ## Bitmap printing
 Maximum size for bitmap printing is 384 pixels width
@@ -100,6 +96,3 @@ In order to compile this project, you need to rename example-config.h to config.
 |*mqtt_listen_topic_papercheck*| **readonly!**<br> - yes<br>- no |
 
 \*defined in config-file above
-
-# Credits
-- [HutchieV](https://github.com/HutchieV) for [ESP8266 MQTT Thermal Printer](https://github.com/HutchieV/ESP8266-MQTT-Thermal-Printer)
