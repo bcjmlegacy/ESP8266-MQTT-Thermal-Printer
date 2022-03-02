@@ -116,15 +116,47 @@ if (strcmp(topic,mqtt_listen_topic_textlineheight)==0){
 
 
 // topic to print text
- if (strcmp(topic,mqtt_listen_topic_text2print)==0){
-    printer.print(F("Message arrived:\n"));
-    for (int i=0;i<length;i++) {
-      printer.print((char)payload[i]);
-    }
-    printer.print(F("\n"));
+ if (strcmp(topic,mqtt_listen_topic_text2print)==0)
+ {
+   printer.print(F("Message arrived:\n"));
+   String payLoad = "";
+   for (int i=0;i<length;i++) 
+   {
+     payLoad = payLoad + ((char)payload[i]);
+   }
+   while (payLoad.length() > 0)
+   {
+     if (payLoad.length() <= printerSize)
+     {
+       printer.print(payLoad);
+       printer.print(F("\n"));
+       payLoad.remove(0);
+       break;
+     }
+     else
+     {
+       int indexWorks=0;
+       int indexTest=0;
+       while (indexTest < printerSize)
+       {
+         indexWorks = indexTest;
+         indexTest = payLoad.indexOf(" ", indexWorks + 1);
+         if (indexTest == -1)
+         {
+           printer.print(payLoad);
+           printer.print(F("\n"));
+         }
+      
+       }   
+         String outString = payLoad.substring(0, indexWorks);
+         payLoad.remove(0,indexWorks + 1);
+         printer.print(outString);
+         printer.print(F("\n"));     
+     }
+  }
  }
-
-} 
+}
+ 
 
 void setup() {
 

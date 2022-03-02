@@ -13,7 +13,8 @@ in Version 2 we can:
 in Version 2.1 we can: 
 - print barcodes via mqtt
 - receive the paperload status via mqtt
-
+in Version 2.2 we can:
+- set the number of characters to print before wrapping to a new line
 
 Although COMPLETELY unnecessary, this printer is really fun addtion to it allowing you to expand your system output options and it would be great to have it in future as part of the notification platform. BUT that is out of my (I'l just a sales guy tinkering) programming capabilities.
 
@@ -72,6 +73,7 @@ In order to compile this project, you need to rename example-config.h to config.
 - *my_id* - name of the printer (will be visible in MQTT log)
 - *mqtt_port* - MQTT server port, default is 1883
 - *baud* - baud rate for communication, leave at 9600
+- *printer_size* - sets the number of characters to print per line before wrapping to a new line
 - *papercheck_milliseconds* - sends every defined milliseconds the status on topic *mqtt_listen_topic_papercheck* (see below) 
   recommendation: minimum 10000 (= 10sec)
 - *mqtt_listen_topic_text2print* - MQTT topic that we will be using ot listen for text to print e.g. *Hello world!*

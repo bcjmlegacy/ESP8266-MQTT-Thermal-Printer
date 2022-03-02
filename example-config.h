@@ -6,6 +6,7 @@ const char* mqtt_pass               = "password";
 const char* my_id                   = "thermal_printer";
 const unsigned int mqtt_port        = 1883;
 const unsigned int baud             = 9600;
+const unsigned int printer_size     = 44
 
 const uint32_t papercheck_milliseconds= 10000L; 
 
