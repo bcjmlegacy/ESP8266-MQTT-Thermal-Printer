@@ -10,9 +10,11 @@ in Version 2 we can:
 - can justify the text via mqtt
 - can change to print bold via mqtt
 - change to underline the text via mqtt
+
 in Version 2.1 we can: 
 - print barcodes via mqtt
 - receive the paperload status via mqtt
+
 in Version 2.2 we can:
 - set the number of characters to print before wrapping to a new line
 
